@@ -32,6 +32,7 @@
     "dev": "preconstruct dev"
   },
   "dependencies": {
+    "@chakra-ui/utils": "1.10.2",
     "@emotion/css": "^11.0.0"
   }
 }
