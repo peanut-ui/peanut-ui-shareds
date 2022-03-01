@@ -1,0 +1,12 @@
+{
+  "files": [
+    {
+      "path": "./packages/peanut-ui-styles/dist/*.cjs.*.js",
+      "maxSize": "20 kB"
+    },
+    {
+      "path": "./packages/peanut-ui-styles/dist/*.esm.js",
+      "maxSize": "20 kB"
+    }
+  ]
+}

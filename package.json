@@ -1,0 +1,58 @@
+{
+  "name": "@peanut-ui/root",
+  "private": true,
+  "author": "Dirga Prakesha <dirga.prakesha@gmail.com>",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples/*"
+    ],
+    "nohoist": [
+      "core-js"
+    ]
+  },
+  "scripts": {
+    "build": "lerna run build --no-private --stream",
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "cg:add": "yarn changeset add",
+    "clean": "lerna run clean",
+    "clean:all": "lerna clean -y && yarn clean && rimraf node_modules",
+    "dev": "lerna run dev",
+    "evalbundle": "bundlewatch --config ./bundlewatch.json",
+    "lint": "eslint packages",
+    "peanut:bootstrap": "yarn && yarn bootstrap",
+    "pkg:check": "manypkg check",
+    "pkg:fix": "manypkg fix",
+    "test": "jest --maxWorkers=50% --passWithNoTests",
+    "test:watch": "jest --maxWorkers=25% --watch --onlyChanged --passWithNoTests",
+    "test:ci": "jest --color --runInBand --ci --passWithNoTests"
+  },
+  "resolutions": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.8"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.16.7",
+    "@babel/plugin-proposal-private-methods": "^7.16.11",
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@changesets/cli": "^2.19.0",
+    "@manypkg/cli": "^0.19.1",
+    "@preconstruct/cli": "^2.1.5",
+    "babel-jest": "^27.4.6",
+    "bundlewatch": "^0.3.3",
+    "eslint": "^8.7.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.7",
+    "jest-environment-jsdom": "^27.4.6",
+    "jest-watch-typeahead": "^1.0.0",
+    "lerna": "^4.0.0",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2"
+  }
+}

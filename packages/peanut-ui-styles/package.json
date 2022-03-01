@@ -1,0 +1,37 @@
+{
+  "name": "@peanut-ui/styles",
+  "description": "Peanut UI framework agnostic styling engine based on emotion",
+  "version": "0.0.0",
+  "author": "Dirga Prakesha <dirga.prakesha@gmail.com>",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "dist/peanut-ui-styles.cjs.js",
+  "module": "dist/peanut-ui-styles.esm.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "styles",
+    "styled",
+    "system",
+    "css-in-js",
+    "peanut-ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peanut-ui/peanut-ui-shareds.git",
+    "directory": "packages/peanut-ui-styles"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "preconstruct build",
+    "clean": "rimraf ./dist",
+    "dev": "preconstruct dev"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.0.0"
+  }
+}
