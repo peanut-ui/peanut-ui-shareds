@@ -1,19 +1,24 @@
-const escape = (value) => {
-  return value.toString().replace(/\s+/g, '-').replace('.', '-')
+const stringReplace = (value, search) => {
+  return value.toString().replace(/\./g, search)
 }
 
 const toVariableReference = (value, prefix) => {
-  return `var(${escape(`--${[prefix, escape(value.substring(1))].filter(Boolean).join('-')}`)})`
+  return `var(${stringReplace(
+    `--${[prefix, stringReplace(value, '-')].filter(Boolean).join('-')}`,
+    '-'
+  )})`
 }
 
 const toVariableDefinition = (value, prefix = '') => {
-  return `--${[prefix, escape(value)].filter(Boolean).join('-')}`
+  return `--${stringReplace([prefix, stringReplace(value, '-')].filter(Boolean).join('-'), '-')}`
 }
 
 export const toCssVariable = (value, prefix) => {
+  const name = isTokenVariable(value) ? value.substring(1) : value
+
   return {
-    variable: toVariableDefinition(value, prefix),
-    reference: toVariableReference(value, prefix),
+    variable: toVariableDefinition(name, prefix),
+    reference: toVariableReference(name, prefix),
   }
 }
 

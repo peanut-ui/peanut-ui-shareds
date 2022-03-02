@@ -27,17 +27,17 @@ const resolveStyles = (cssObject) => {
   let computedStyles = {}
   let computedCssObject = cssObject
 
-  for (let key in computedCssObject) {
-    let value = computedCssObject[key]
-
+  for (let [key, value] of Object.entries(computedCssObject)) {
     if (key in allCssProperties) {
       if (key in cssProperties) key = cssProperties[key]
       if (key in cssPseudoProperties) key = cssPseudoProperties[key]
       if (isObject(value)) {
         computedStyles[key] = resolveStyles(value)
       } else {
-        if (isTokenVariable(value)) computedStyles[key] = toCssVariable(value, 'peanut').reference
-        else computedStyles[key] = value
+        if (isTokenVariable(value)) {
+          const { reference } = toCssVariable(value, 'peanut')
+          computedStyles[key] = reference
+        } else computedStyles[key] = value
       }
     } else delete computedStyles[key]
   }
