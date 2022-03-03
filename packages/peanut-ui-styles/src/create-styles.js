@@ -5,7 +5,7 @@ import { isTokenVariable, toCssVariable } from './utils/css-variable.util'
 
 const mergeCssClass = (cx, classes, prefix) => {
   return Object.keys(classes).reduce((previous, current) => {
-    previous[current] = cx(classes[current], prefix ? `peanut-${prefix}-${current}` : null)
+    previous[current] = cx(classes[current], prefix ? `${prefix}-${current}` : null)
 
     return previous
   }, {})
@@ -23,28 +23,6 @@ const entriesCssObject = (entries) => {
   return result
 }
 
-const resolveStyles = (cssObject) => {
-  let computedStyles = {}
-  let computedCssObject = cssObject
-
-  for (let [key, value] of Object.entries(computedCssObject)) {
-    if (key in allCssProperties) {
-      if (key in cssProperties) key = cssProperties[key]
-      if (key in cssPseudoProperties) key = cssPseudoProperties[key]
-      if (isObject(value)) {
-        computedStyles[key] = resolveStyles(value)
-      } else {
-        if (isTokenVariable(value)) {
-          const { reference } = toCssVariable(value, 'peanut')
-          computedStyles[key] = reference
-        } else computedStyles[key] = value
-      }
-    } else delete computedStyles[key]
-  }
-
-  return computedStyles
-}
-
 export const createStyles = (cssObject) => {
   const getCssObject = isFunction(cssObject) ? cssObject : () => cssObject
 
@@ -52,9 +30,30 @@ export const createStyles = (cssObject) => {
     const cssObject = getCssObject(params)
     const classes = entriesCssObject(
       Object.keys(cssObject).map((key) => {
-        const mergedStyles = cx(css(resolveStyles(cssObject[key])))
+        const resolveStyles = (cssObject) => {
+          let stylesComputed = {}
 
-        return [key, mergedStyles]
+          for (let [key, value] of Object.entries(cssObject)) {
+            if (key in allCssProperties) {
+              if (key in cssProperties) key = cssProperties[key]
+              if (key in cssPseudoProperties) key = cssPseudoProperties[key]
+              if (isObject(value)) {
+                stylesComputed[key] = resolveStyles(value)
+              } else {
+                if (isTokenVariable(value)) {
+                  const { reference } = toCssVariable(value, 'peanut')
+                  stylesComputed[key] = reference
+                } else stylesComputed[key] = value
+              }
+            } else delete stylesComputed[key]
+          }
+
+          return stylesComputed
+        }
+
+        const stylesMerged = cx(css(resolveStyles(cssObject[key])))
+
+        return [key, stylesMerged]
       })
     )
 

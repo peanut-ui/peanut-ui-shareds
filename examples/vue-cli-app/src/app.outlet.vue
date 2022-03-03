@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import { createStyles, createThemes } from '@peanut-ui/styles'
+import { createStyles, createThemes, cssGlobal } from '@peanut-ui/styles'
 
-createThemes({
+const theme = createThemes({
   color: {
     brand: {
       100: 'blue',
@@ -22,9 +22,14 @@ createThemes({
   },
 })
 
+cssGlobal({
+  '*': { margin: 0, padding: 0 },
+  ':root': theme.cssVariable,
+})
+
 const getStyles = createStyles(() => ({
   wrapper: {
-    padding: '$spacing.100',
+    padding: '$spacing.300',
     backgroundColor: '$color.brand.100',
   },
 
@@ -40,7 +45,7 @@ export default {
   name: 'AppOutlet',
   computed: {
     classes: () => {
-      const { classes } = getStyles({}, 'badge')
+      const { classes } = getStyles({}, 'peanut-badge')
 
       return classes
     },
