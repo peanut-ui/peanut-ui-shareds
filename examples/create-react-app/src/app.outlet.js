@@ -4,6 +4,7 @@ import {
   createKeyframes,
   cssGlobal,
   cssNormalize,
+  extendThemes,
 } from '@peanut-ui/styles'
 
 const theme = createThemes({
@@ -17,13 +18,33 @@ const theme = createThemes({
   spacing: {
     100: '10px',
     200: '20px',
-    300: '30px',
   },
 })
 
+const newTheme = createThemes({
+  color: {
+    brand: {
+      100: 'azure',
+      200: 'blueviolet',
+    },
+  },
+  spacing: {
+    100: '20px',
+    200: '40px',
+    300: '60px',
+    400: '80px',
+  },
+  size: {
+    100: '10px',
+    200: '20px',
+  },
+})
+
+const extendTheme = extendThemes(theme, newTheme)
+
 cssGlobal({
   '*': { margin: 0, padding: 0 },
-  ':root': theme.cssVariable,
+  ':root': extendTheme.cssVariable,
 })
 
 cssNormalize()
