@@ -77,6 +77,13 @@ export const cssProperties = {
   paddingRight: 'paddingRight',
   paddingBottom: 'paddingBottom',
   paddingLeft: 'paddingLeft',
+  transition: 'transition',
+  transitionDelay: 'transitionDelay',
+  animation: 'animation',
+  willChange: 'willChange',
+  transitionDuration: 'transitionDuration',
+  transitionProperty: 'transitionProperty',
+  transitionTimingFunction: 'transitionTimingFunction',
 }
 
 export const cssPseudoProperties = {

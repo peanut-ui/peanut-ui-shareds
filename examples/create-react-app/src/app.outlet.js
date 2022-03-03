@@ -1,4 +1,4 @@
-import { createStyles, createThemes, cssGlobal } from '@peanut-ui/styles'
+import { createStyles, createThemes, createKeyframes, cssGlobal } from '@peanut-ui/styles'
 
 const theme = createThemes({
   color: {
@@ -20,6 +20,21 @@ cssGlobal({
   ':root': theme.cssVariable,
 })
 
+const bounce = createKeyframes({
+  'from, 20%, 53%, 80%, to': {
+    transform: 'translate3d(0,0,0)',
+  },
+  '40%, 43%': {
+    transform: 'translate3d(0, -30px, 0)',
+  },
+  '70%': {
+    transform: 'translate3d(0, -15px, 0)',
+  },
+  '90%': {
+    transform: 'translate3d(0, -4px, 0)',
+  },
+})
+
 const getStyles = createStyles(() => ({
   wrapper: {
     padding: '$spacing.300',
@@ -28,6 +43,7 @@ const getStyles = createStyles(() => ({
 
   text: {
     color: '$color.brand.200',
+    animation: `${bounce} 1s ease infinite`,
     _hover: {
       color: '$color.brand.300',
     },
