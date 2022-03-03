@@ -5,7 +5,13 @@
 </template>
 
 <script>
-import { createStyles, createThemes, createKeyframes, cssGlobal } from '@peanut-ui/styles'
+import {
+  createStyles,
+  createThemes,
+  createKeyframes,
+  cssGlobal,
+  cssNormalize,
+} from '@peanut-ui/styles'
 
 const theme = createThemes({
   color: {
@@ -26,6 +32,8 @@ cssGlobal({
   '*': { margin: 0, padding: 0 },
   ':root': theme.cssVariable,
 })
+
+cssNormalize()
 
 const bounce = createKeyframes({
   'from, 20%, 53%, 80%, to': {
