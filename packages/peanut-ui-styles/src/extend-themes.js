@@ -1,6 +1,6 @@
-export const extendThemes = (oldCssVariable, newCssVariable) => {
-  const cssVariable = Object.assign(oldCssVariable.cssVariable, newCssVariable.cssVariable)
-  const cssMap = Object.assign(oldCssVariable.cssMap, newCssVariable.cssMap)
+export const extendThemes = (themeObject, themeOverrideObject) => {
+  const cssVariable = Object.assign({}, themeObject?.cssVariable, themeOverrideObject?.cssVariable)
+  const cssMap = Object.assign({}, themeObject?.cssMap, themeOverrideObject?.cssMap)
 
   return { cssVariable, cssMap }
 }

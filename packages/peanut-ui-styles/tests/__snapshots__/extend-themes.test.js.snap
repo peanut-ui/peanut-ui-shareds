@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@peanut-ui/peanut-ui-styles/extend-themes create snapshot 1`] = `
+Object {
+  "cssMap": Object {
+    "color.100": Object {
+      "reference": "var(--peanut-color-100)",
+      "value": "azure",
+      "variable": "--peanut-color-100",
+    },
+    "color.200": Object {
+      "reference": "var(--peanut-color-200)",
+      "value": "green",
+      "variable": "--peanut-color-200",
+    },
+    "space.100": Object {
+      "reference": "var(--peanut-space-100)",
+      "value": "20px",
+      "variable": "--peanut-space-100",
+    },
+  },
+  "cssVariable": Object {
+    "--peanut-color-100": "azure",
+    "--peanut-color-200": "green",
+    "--peanut-space-100": "20px",
+  },
+}
+`;
