@@ -7,7 +7,7 @@ describe('@peanut-ui/peanut-ui-styles/extend-themes', () => {
   test('should merges theme object', () => {
     const extendTheme = extendThemes(defaultTheme, overrideTheme)
 
-    expect(extendTheme).toMatchObject({
+    expect(extendTheme).toEqual({
       cssMap: {
         'color.100': {
           reference: 'var(--peanut-color-100)',
