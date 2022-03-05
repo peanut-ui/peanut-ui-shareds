@@ -7,7 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@emotion/css": "^11.7.1",
+    "@emotion/css": "^11.0.0",
     "@peanut-ui/styles": "*",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

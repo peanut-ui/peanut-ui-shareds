@@ -28,8 +28,8 @@
   },
   "scripts": {
     "build": "preconstruct build",
-    "clean": "rimraf ./dist",
-    "dev": "preconstruct dev"
+    "build:watch": "preconstruct watch",
+    "clean": "rimraf ./dist"
   },
   "dependencies": {
     "@chakra-ui/utils": "1.10.2",
