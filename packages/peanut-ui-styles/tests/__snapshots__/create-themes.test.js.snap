@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@peanut-ui/peanut-ui-styles/create-themes should create or check matches snapshot 1`] = `
+Object {
+  "cssMap": Object {
+    "color.brand.100": Object {
+      "reference": "var(--peanut-color-brand-100)",
+      "value": "blue",
+      "variable": "--peanut-color-brand-100",
+    },
+    "space.100": Object {
+      "reference": "var(--peanut-space-100)",
+      "value": "10px",
+      "variable": "--peanut-space-100",
+    },
+  },
+  "cssVariable": Object {
+    "--peanut-color-brand-100": "blue",
+    "--peanut-space-100": "10px",
+  },
+}
+`;
