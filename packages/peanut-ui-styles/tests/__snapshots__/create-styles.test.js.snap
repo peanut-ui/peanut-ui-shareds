@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@peanut-ui/peanut-ui-styles/create-styles should create or check matches snapshot 1`] = `
+exports[`@peanut-ui/peanut-ui-styles/create-styles should create or check match snapshot 1`] = `
 Object {
   "classes": Object {
     "text": "css-d090gn",

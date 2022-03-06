@@ -1,21 +1,35 @@
 import { css, cx } from '@emotion/css'
 import { isObject, isFunction } from '@chakra-ui/utils'
-import { cssProperties, cssPseudoProperties, allCssProperties } from './utils/css-property.util'
 import { isTokenVariable, toCssVariable } from './utils/css-variable.util'
+import { cssProperties } from './utils/css-property.util'
 
-const mergeCssClass = (cx, classes, prefix) => {
+/**
+ * @desc function for merging class names and adding a prefix.
+ * @param {function} cx
+ * @param {object} classes
+ * @param {string} prefix
+ * @return {object}
+ */
+
+const mergesCssClass = (cx, classes, prefix) => {
   return Object.keys(classes).reduce((previous, current) => {
-    previous[current] = cx(classes[current], prefix ? `${prefix}-${current}` : null)
+    previous[current] = cx(classes[current], prefix ? `peanut-${prefix}-${current}` : null)
 
     return previous
   }, {})
 }
 
-const entriesCssObject = (entries) => {
+/**
+ * @desc function for converting an array of class names into objects.
+ * @param {array} values
+ * @return {object}
+ */
+
+const entriesCssObject = (values) => {
   const result = {}
 
-  Object.keys(entries).forEach((index) => {
-    const [key, value] = entries[index]
+  Object.keys(values).forEach((index) => {
+    const [key, value] = values[index]
 
     result[key] = value
   })
@@ -23,41 +37,53 @@ const entriesCssObject = (entries) => {
   return result
 }
 
-export const createStyles = (cssObject) => {
-  const getCssObject = isFunction(cssObject) ? cssObject : () => cssObject
+/**
+ * @desc function for creating styles and generating them into unique class names.
+ * @param {object} values
+ * @return {function}
+ */
+
+export const createStyles = (values) => {
+  const getValues = isFunction(values) ? values : () => values
+
+  /**
+   * @desc function for accessing class names data.
+   * @param {object} params
+   * @param {string} prefix
+   * @return {object}
+   */
 
   const getStyles = (params, prefix) => {
-    const cssObject = getCssObject(params)
+    const values = getValues(params)
     const classes = entriesCssObject(
-      Object.keys(cssObject).map((key) => {
-        const resolveStyles = (cssObject) => {
-          let stylesComputed = {}
+      Object.keys(values).map((key) => {
+        const resolveStyles = (values) => {
+          let computed = {}
 
-          for (let [key, value] of Object.entries(cssObject)) {
-            if (key in allCssProperties) {
+          for (let [key, value] of Object.entries(values)) {
+            if (key in cssProperties) {
               if (key in cssProperties) key = cssProperties[key]
-              if (key in cssPseudoProperties) key = cssPseudoProperties[key]
               if (isObject(value)) {
-                stylesComputed[key] = resolveStyles(value)
+                computed[key] = resolveStyles(value)
               } else {
                 if (isTokenVariable(value)) {
                   const { reference } = toCssVariable(value, 'peanut')
-                  stylesComputed[key] = reference
-                } else stylesComputed[key] = value
+                  computed[key] = reference
+                } else computed[key] = value
               }
-            } else delete stylesComputed[key]
+            } else delete computed[key]
           }
 
-          return stylesComputed
+          return computed
         }
 
-        const stylesMerged = cx(css(resolveStyles(cssObject[key])))
+        const merged = cx(css(resolveStyles(values[key])))
 
-        return [key, stylesMerged]
+        return [key, merged]
       })
     )
 
-    return { classes: mergeCssClass(cx, classes, prefix), cx }
+    return { classes: mergesCssClass(cx, classes, prefix), cx }
   }
 
   return getStyles

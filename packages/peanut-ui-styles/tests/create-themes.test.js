@@ -1,7 +1,7 @@
 import { createThemes } from '../src'
 
 describe('@peanut-ui/peanut-ui-styles/create-themes', () => {
-  test('should convert shallow object into map and variable object', () => {
+  test('should convert shallow objects into map and variable objects', () => {
     const theme = createThemes({
       color: {
         100: 'blue',
@@ -12,7 +12,7 @@ describe('@peanut-ui/peanut-ui-styles/create-themes', () => {
     })
 
     expect(theme).toEqual({
-      cssMap: {
+      maps: {
         'color.100': {
           reference: 'var(--peanut-color-100)',
           value: 'blue',
@@ -24,14 +24,14 @@ describe('@peanut-ui/peanut-ui-styles/create-themes', () => {
           variable: '--peanut-space-100',
         },
       },
-      cssVariable: {
+      variables: {
         '--peanut-color-100': 'blue',
         '--peanut-space-100': '10px',
       },
     })
   })
 
-  test('should convert deep object into map and variable object', () => {
+  test('should convert deep objects into map and variable objects', () => {
     const theme = createThemes({
       color: {
         brand: {
@@ -46,7 +46,7 @@ describe('@peanut-ui/peanut-ui-styles/create-themes', () => {
     })
 
     expect(theme).toEqual({
-      cssMap: {
+      maps: {
         'color.brand.primary.100': {
           reference: 'var(--peanut-color-brand-primary-100)',
           value: 'blue',
@@ -58,19 +58,17 @@ describe('@peanut-ui/peanut-ui-styles/create-themes', () => {
           variable: '--peanut-space-100',
         },
       },
-      cssVariable: {
+      variables: {
         '--peanut-color-brand-primary-100': 'blue',
         '--peanut-space-100': '10px',
       },
     })
   })
 
-  test('should create or check matches snapshot', () => {
+  test('should create or check match snapshot', () => {
     const theme = createThemes({
       color: {
-        brand: {
-          100: 'blue',
-        },
+        100: 'blue',
       },
       space: {
         100: '10px',

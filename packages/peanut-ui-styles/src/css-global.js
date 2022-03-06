@@ -1,19 +1,24 @@
 import { injectGlobal } from '@emotion/css'
 
 const toKebabCase = (value) => value.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
-const replaceString = (value, newValue, search) => value.replace(search, newValue)
 
-export const cssGlobal = (cssObject) => {
-  let cssMerged = ''
+/**
+ * @desc function for generating styles and injecting them into global scope.
+ * @param {object} values
+ * @return {string}
+ */
 
-  for (let [key, value] of Object.entries(cssObject)) {
-    let cssComputed = ''
+export const cssGlobal = (values) => {
+  let merged = ''
 
-    Object.keys(value).map((key) => (cssComputed += `${toKebabCase(key)}:${value[key]};`))
-    cssMerged += replaceString(`${key}{${cssComputed}}`, '', /\s+/g)
+  for (let [key, value] of Object.entries(values)) {
+    let computed = ''
+
+    Object.keys(value).map((key) => (computed += `${toKebabCase(key)}:${value[key]}`.concat(';')))
+    merged += `${key}{${computed}}`.replace(/\s+/g, '')
   }
 
-  injectGlobal`${cssMerged}`
+  injectGlobal`${merged}`
 
-  return cssMerged
+  return merged
 }

@@ -1,3 +1,8 @@
+/**
+ * @desc export css properties.
+ * @return {object}
+ */
+
 export const cssProperties = {
   backgroundColor: 'backgroundColor',
   backgroundImage: 'backgroundImage',
@@ -84,9 +89,6 @@ export const cssProperties = {
   transitionDuration: 'transitionDuration',
   transitionProperty: 'transitionProperty',
   transitionTimingFunction: 'transitionTimingFunction',
-}
-
-export const cssPseudoProperties = {
   _hover: '&:hover, &[data-hover]',
   _active: '&:active, &[data-active]',
   _focus: ' &:focus, &[data-focus]',
@@ -101,5 +103,3 @@ export const cssPseudoProperties = {
   _visited: '&:visited',
   _indeterminate: '&:indeterminate, &[aria-checked=mixed], &[data-indeterminate]',
 }
-
-export const allCssProperties = { ...cssProperties, ...cssPseudoProperties }

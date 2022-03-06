@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@peanut-ui/peanut-ui-styles/extend-themes create snapshot 1`] = `
+exports[`@peanut-ui/peanut-ui-styles/extend-themes should create or check match snapshot 1`] = `
 Object {
-  "cssMap": Object {
+  "maps": Object {
     "color.100": Object {
       "reference": "var(--peanut-color-100)",
       "value": "azure",
@@ -19,7 +19,7 @@ Object {
       "variable": "--peanut-space-100",
     },
   },
-  "cssVariable": Object {
+  "variables": Object {
     "--peanut-color-100": "azure",
     "--peanut-color-200": "green",
     "--peanut-space-100": "20px",

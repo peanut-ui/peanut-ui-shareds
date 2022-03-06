@@ -1,29 +1,35 @@
 import { isObject } from '@chakra-ui/utils'
 import { toCssVariable } from './utils/css-variable.util'
 
-export const createThemes = (tokenObject) => {
-  let cssVariable = {}
-  let cssMap = {}
-  let referenceKeys = []
+/**
+ * @desc function for creating additional themes.
+ * @param {object} values
+ * @return {object}
+ */
 
-  const resolveThemes = (tokenObject) => {
-    for (let [key, value] of Object.entries(tokenObject)) {
+export const createThemes = (values) => {
+  let variables = {}
+  let maps = {}
+  let references = []
+
+  const resolveThemes = (values) => {
+    for (let [key, value] of Object.entries(values)) {
       if (isObject(value)) {
-        referenceKeys.push(key)
+        references.push(key)
         resolveThemes(value)
       } else {
-        const keys = referenceKeys.join('.').concat('.', key)
+        const keys = references.join('.').concat('.', key)
         const { variable, reference } = toCssVariable(keys, 'peanut')
 
-        cssVariable[variable] = value
-        cssMap[keys] = { value, variable, reference }
+        variables[variable] = value
+        maps[keys] = { value, variable, reference }
       }
     }
 
-    referenceKeys = []
+    references = []
   }
 
-  resolveThemes(tokenObject)
+  resolveThemes(values)
 
-  return { cssVariable, cssMap }
+  return { variables, maps }
 }

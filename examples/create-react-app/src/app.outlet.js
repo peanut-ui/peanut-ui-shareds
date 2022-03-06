@@ -44,7 +44,7 @@ const extendTheme = extendThemes(theme, newTheme)
 
 cssGlobal({
   '*': { margin: 0, padding: 0 },
-  ':root': extendTheme.cssVariable,
+  ':root': extendTheme.variables,
 })
 
 cssNormalize()
@@ -80,7 +80,7 @@ const getStyles = createStyles(() => ({
 }))
 
 const AppOutlet = () => {
-  const { classes } = getStyles({}, 'peanut-badge')
+  const { classes } = getStyles({}, 'badge')
 
   return (
     <div className={classes.wrapper}>
