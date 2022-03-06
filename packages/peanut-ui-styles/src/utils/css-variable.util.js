@@ -1,16 +1,19 @@
-const replaceString = (value, search) => {
-  return value.toString().replace(/\./g, search)
-}
+const replaceString = (value, newValue, search) => value.replace(search, newValue)
 
 const toVariableReference = (value, prefix) => {
   return `var(${replaceString(
-    `--${[prefix, replaceString(value, '-')].filter(Boolean).join('-')}`,
-    '-'
+    `--${[prefix, replaceString(value, '-', /\./g)].filter(Boolean).join('-')}`,
+    '-',
+    /\./g
   )})`
 }
 
 const toVariableDefinition = (value, prefix = '') => {
-  return `--${replaceString([prefix, replaceString(value, '-')].filter(Boolean).join('-'), '-')}`
+  return `--${replaceString(
+    [prefix, replaceString(value, '-', /\./g)].filter(Boolean).join('-'),
+    '-',
+    /\./g
+  )}`
 }
 
 export const toCssVariable = (value, prefix) => {

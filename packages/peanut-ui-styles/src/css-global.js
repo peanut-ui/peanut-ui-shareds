@@ -1,6 +1,7 @@
 import { injectGlobal } from '@emotion/css'
 
 const toKebabCase = (value) => value.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
+const replaceString = (value, newValue, search) => value.replace(search, newValue)
 
 export const cssGlobal = (cssObject) => {
   let cssMerged = ''
@@ -9,7 +10,7 @@ export const cssGlobal = (cssObject) => {
     let cssComputed = ''
 
     Object.keys(value).map((key) => (cssComputed += `${toKebabCase(key)}:${value[key]};`))
-    cssMerged += `${key}{${cssComputed}}`
+    cssMerged += replaceString(`${key}{${cssComputed}}`, '', /\s+/g)
   }
 
   injectGlobal`${cssMerged}`
