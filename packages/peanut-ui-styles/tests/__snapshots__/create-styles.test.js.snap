@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@peanut-ui/peanut-ui-styles/create-styles should create or check matches snapshot 1`] = `
+Object {
+  "classes": Object {
+    "text": "css-d090gn",
+    "wrapper": "css-154rb2q",
+  },
+  "cx": [Function],
+}
+`;
